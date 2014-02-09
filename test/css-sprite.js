@@ -135,4 +135,16 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         done();
       });
   });
+  it('should throw error when file stream', function (done) {
+
+    vfs.src('./test/fixtures/**', {buffer: false})
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites.png'
+      }))
+      .on('error', function (err) {
+        err.toString().should.equal('Error: Streaming not supported');
+        done();
+      })
+  });
 });
