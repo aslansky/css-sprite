@@ -1,4 +1,6 @@
-# css-sprite [![NPM version](https://badge.fury.io/js/css-sprite.png)](http://badge.fury.io/js/css-sprite) [![Build Status](https://travis-ci.org/aslansky/css-sprite.png?branch=master)](https://travis-ci.org/aslansky/css-sprite) [![Dependencies](https://david-dm.org/aslansky/css-sprite.png)](https://david-dm.org/aslansky/css-sprite)
+# css-sprite
+
+[![NPM version](https://badge.fury.io/js/css-sprite.png)](http://badge.fury.io/js/css-sprite) [![Build Status](https://travis-ci.org/aslansky/css-sprite.png?branch=master)](https://travis-ci.org/aslansky/css-sprite) [![Coverage Status](https://coveralls.io/repos/aslansky/css-sprite/badge.png)](https://coveralls.io/r/aslansky/css-sprite) [![Dependencies](https://david-dm.org/aslansky/css-sprite.png)](https://david-dm.org/aslansky/css-sprite)
 
 > A css sprite generator.
 
