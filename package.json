@@ -1,6 +1,6 @@
 {
   "name": "css-sprite",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "css sprite generator",
   "license": "MIT",
   "repository": {
@@ -36,7 +36,6 @@
     "bin"
   ],
   "keywords": [
-    "gulpfriendly",
     "sprites",
     "sprite",
     "coordinates",
@@ -44,7 +43,9 @@
     "scss",
     "less",
     "sass",
-    "stylus"
+    "stylus",
+    "gulpfriendly",
+    "gruntplugin"
   ],
   "dependencies": {
     "vinyl-fs": "~0.0.2",

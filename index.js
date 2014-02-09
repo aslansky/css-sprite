@@ -5,6 +5,8 @@ var es = require('event-stream');
 var vfs = require('vinyl-fs');
 var gfs = require('graceful-fs');
 var mkdirp = require('mkdirp');
+var path = require('path');
+var replaceExtension = require('./lib/replace-extension');
 var _ = require('lodash');
 
 var writeFile = function (file, cb) {
@@ -37,7 +39,9 @@ module.exports = {
     }
 
     var opts = _.extend({}, defaults, o);
-
+    if (opts.style && path.basename(opts.style).indexOf('.') === -1) {
+      opts.style = path.join(opts.style, replaceExtension(opts.name, '.' + opts.processor))
+    }
     vfs.src(opts.src)
       .pipe(sprite(opts))
       .pipe(es.map(writeFile))

@@ -47,6 +47,24 @@ describe('css-sprite wrapper (index.js)', function () {
       });
     });
   });
+  it('should generate a sprite and css file and use name of sprite as the name for the css file', function (done) {
+    sprite.create({
+      src: ['./test/fixtures/*.png'],
+      out: './test/dist',
+      name: 'sprite.png',
+      style: './test/dist/'
+    }, function () {
+      fs.existsSync('./test/dist/sprite.png').should.be.true;
+      fs.existsSync('./test/dist/sprite.css').should.be.true;
+      fs.readFile('./test/dist/sprite.css', {encoding: 'utf-8'}, function (err, css) {
+        css.should.containEql('.icon-floppy-disk');
+        fs.unlinkSync('./test/dist/sprite.png');
+        fs.unlinkSync('./test/dist/sprite.css');
+        fs.rmdirSync('./test/dist');
+        done();
+      });
+    });
+  });
   it('sprite.stream should return a object stream with a sprite', function (done) {
     vfs.src('./test/fixtures/*.png')
       .pipe(sprite.stream({

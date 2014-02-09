@@ -93,6 +93,42 @@ gulp.task('sprites', function () {
 });
 ```
 
-Options to use `css-sprite` with gulp are the same as for the `sprite.create` function with the exception of `src` and `out`.
+Options to use `css-sprite` with [Gulp](http://gulpjs.com) are the same as for the `sprite.create` function with the exception of `src` and `out`.
+
+## Usage with [Grunt](http://gruntjs.com)
+
+Add `css-sprite` as a dependency to your grunt project and then use something like this in your `gruntfile.js`:
+
+```
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    css_sprite: {
+      options: {
+        'cssPath': '../images',
+        'processor': 'css',
+        'orientation': 'vertical',
+        'margin': 5
+      },
+      build: {
+        options: {
+          'style': 'dest/css/sprite.css'
+        },
+        src: ['src/images/*', 'src/images2/*'],
+        dest: 'dest/images/sprite.png',
+      }
+    }
+  });
+
+  // Load the plugin that provides the "css-sprite" task.
+  grunt.loadNpmTasks('css-sprite');
+  
+  // Default task(s).
+  grunt.registerTask('default', ['css_sprite']);
+};
+```
+
+Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for the `sprite.create` function with the exception of `src` and `out`.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aslansky/css-sprite/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
