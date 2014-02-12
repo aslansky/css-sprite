@@ -29,18 +29,19 @@ npm install css-sprite -g
 ## Command Line Interface
 
 ```
-Usage: css-sprite <src>... [options]
+Usage: css-sprite <out> <src>... [options]
 
+out     path of directory to write sprite file to
 src     glob strings to find source images to put into the sprite
 
 Options:
-   -o DIR, --out DIR      path of directory to write sprite file to  [process.cwd()]
+   -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
    -n, --name             name of the sprite file  [sprite.png]
-   -st, --style           file to write css to, if ommited no css is written
-   -c, --css-image-path   http path to images on the web server (relative to css path or absolute)  [../images]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
-   --orientation          orientation of the sprite image  [vertical]
+   -st, --style           file to write css to, if ommited no css is written
+   -w, --watch            continuously create sprite
    --margin               margin in px between tiles  [5]
+   --orientation          orientation of the sprite image  [vertical]
 ```
 
 ## Programatic usage
