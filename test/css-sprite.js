@@ -20,10 +20,10 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .pipe(es.map(function (file, cb) {
         var img = new Image();
         img.src = file.contents;
-        file.path.should.be.equal('dist/img/sprites.png');
-        file.relative.should.be.equal('sprites.png');
-        img.width.should.be.equal(56);
-        img.height.should.be.equal(125);
+        file.path.should.equal('dist/img/sprites.png');
+        file.relative.should.equal('sprites.png');
+        img.width.should.equal(56);
+        img.height.should.equal(125);
         cb();
       }))
       .on('end', done);
@@ -38,8 +38,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .pipe(es.map(function (file, cb) {
         var img = new Image();
         img.src = file.contents;
-        img.width.should.be.equal(86);
-        img.height.should.be.equal(185);
+        img.width.should.equal(86);
+        img.height.should.equal(185);
         cb();
       }))
       .on('end', done);
@@ -54,10 +54,10 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .pipe(es.map(function (file, cb) {
         var img = new Image();
         img.src = file.contents;
-        file.path.should.be.equal('dist/img/sprites.png');
-        file.relative.should.be.equal('sprites.png');
-        img.width.should.be.equal(110);
-        img.height.should.be.equal(69);
+        file.path.should.equal('dist/img/sprites.png');
+        file.relative.should.equal('sprites.png');
+        img.width.should.equal(110);
+        img.height.should.equal(69);
         cb();
       }))
       .on('end', done);
@@ -81,11 +81,11 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       }))
       .on('end', function () {
         png.should.be.ok;
-        png.path.should.be.equal('dist/img/sprites.png');
-        png.relative.should.be.equal('sprites.png');
+        png.path.should.equal('dist/img/sprites.png');
+        png.relative.should.equal('sprites.png');
         css.should.be.ok;
-        css.path.should.be.equal('./dist/css/sprites.css');
-        css.relative.should.be.equal('sprites.css');
+        css.path.should.equal('./dist/css/sprites.css');
+        css.relative.should.equal('sprites.css');
         css.contents.toString('utf-8').should.containEql('.icon-floppy-disk');
         done();
       });
@@ -110,14 +110,27 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       }))
       .on('end', function () {
         png.should.be.ok;
-        png.path.should.be.equal('dist/img/sprites.png');
-        png.relative.should.be.equal('sprites.png');
+        png.path.should.equal('dist/img/sprites.png');
+        png.relative.should.equal('sprites.png');
         css.should.be.ok;
-        css.path.should.be.equal('./dist/css/sprites.scss');
-        css.relative.should.be.equal('sprites.scss');
+        css.path.should.equal('./dist/css/sprites.scss');
+        css.relative.should.equal('sprites.scss');
         css.contents.toString('utf-8').should.containEql('$floppy-disk');
         done();
       });
+  });
+  it('should return a object stream with a css file with base64 encode images in it', function (done) {
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        base64: true,
+        out: './dist/css'
+      }))
+      .pipe(es.map(function (file, cb) {
+        file.relative.should.equal('sprite.css');
+        file.contents.toString('utf-8').should.containEql('data:image/png;base64');
+        cb();
+      }))
+      .on('end', done);
   });
   it('should do nothing when no files match', function (done) {
     var file = false;

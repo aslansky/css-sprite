@@ -20,6 +20,11 @@ var opts = require('nomnom')
     metavar: 'GLOB',
     help: 'glob strings to find source images to put into the sprite'
   })
+  .option('base64', {
+    abbr: 'b',
+    flag: true,
+    help: 'instead of creating a sprite, write base64 encoded images to css (css file will be written to <out>)'
+  })
   .option('cssPath', {
     abbr: 'c',
     full: 'css-image-path',

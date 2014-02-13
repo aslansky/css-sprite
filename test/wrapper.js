@@ -21,8 +21,8 @@ describe('css-sprite wrapper (index.js)', function () {
       fs.readFile('./test/dist/sprite.png', function (err, png) {
         var img = new Image();
         img.src = png;
-        img.width.should.be.equal(56);
-        img.height.should.be.equal(125);
+        img.width.should.equal(56);
+        img.height.should.equal(125);
         fs.unlinkSync('./test/dist/sprite.png');
         fs.rmdirSync('./test/dist');
         done();
@@ -73,9 +73,9 @@ describe('css-sprite wrapper (index.js)', function () {
       .pipe(es.map(function (file, cb) {
         var img = new Image();
         img.src = file.contents;
-        file.relative.should.be.equal('sprite.png');
-        img.width.should.be.equal(56);
-        img.height.should.be.equal(125);
+        file.relative.should.equal('sprite.png');
+        img.width.should.equal(56);
+        img.height.should.equal(125);
         cb();
       }))
       .on('end', done);

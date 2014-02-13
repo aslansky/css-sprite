@@ -4,7 +4,7 @@
 
 > A css sprite generator.
 
-> Generates a sprite file and the propper css file out of a directory with images
+> Generates a sprite file and the propper css file out of a directory with images. It can also generate style files with base64 encoded images.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ Install with [npm](https://npmjs.org/package/css-sprite)
 npm install css-sprite --save
 ```
 
-If you want to use `css-sprite` on your cli use:
+If you want to use `css-sprite` on your cli install with:
 
 ```
 npm install css-sprite -g
@@ -35,6 +35,7 @@ out     path of directory to write sprite file to
 src     glob strings to find source images to put into the sprite
 
 Options:
+   -b, --base64           instead of creating a sprite, write base64 encoded images to css (css file will be written to <out>)
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
    -n, --name             name of the sprite file  [sprite.png]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
@@ -59,6 +60,7 @@ sprite.create(options, cb);
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
 * **orientation:** orientation of the sprite image  [vertical]
 * **margin:** margin in px between tiles  [5]
+* **base64:** when true instead of creating a sprite writes base64 encoded images to css (css file will be written to ```<out>```)
 
 ### Example
 ```
@@ -81,16 +83,27 @@ var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var sprite = require('css-sprite').stream;
 
+// generate sprite.png and _sprite.scss
 gulp.task('sprites', function () {
   return gulp.src('./src/img/*.png')
     .pipe(sprite({
-      name: 'sprites.png',
-      style: '_sprites.scss',
+      name: 'sprite.png',
+      style: '_sprite.scss',
       cssPath: './img',
       processor: 'scss'
     }))
     .pipe(gulpif('*.png', gulp.dest('./dist/img/')))
     .pipe(gulpif('*.scss', gulp.dest('./dist/scss/')));
+});
+// generate scss with base64 encoded images
+gulp.task('base64', function () {
+  return gulp.src('./src/img/*.png')
+    .pipe(sprite({
+      base64: true,
+      style: '_base64.scss',
+      processor: 'scss'
+    }))
+    .pipe(gulp.dest('./dist/scss/'));
 });
 ```
 
@@ -112,12 +125,19 @@ module.exports = function(grunt) {
         'orientation': 'vertical',
         'margin': 5
       },
-      build: {
+      sprite: {
         options: {
           'style': 'dest/css/sprite.css'
         },
         src: ['src/images/*', 'src/images2/*'],
         dest: 'dest/images/sprite.png',
+      },
+      base64: {
+        options: {
+          'base64': true
+        },
+        src: ['src/images/*'],
+        dest: 'dest/scss/base64.css',
       }
     }
   });
@@ -131,5 +151,6 @@ module.exports = function(grunt) {
 ```
 
 Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for the `sprite.create` function with the exception of `src` and `out`.
+
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aslansky/css-sprite/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
