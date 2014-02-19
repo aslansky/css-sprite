@@ -1,6 +1,6 @@
 {
   "name": "css-sprite",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "css sprite generator",
   "license": "MIT",
   "repository": {
@@ -30,11 +30,6 @@
     "style": "jscs test/*.js lib/*.js index.js"
   },
   "main": "./index.js",
-  "files": [
-    "./index.js",
-    "lib",
-    "bin"
-  ],
   "keywords": [
     "sprites",
     "sprite",
