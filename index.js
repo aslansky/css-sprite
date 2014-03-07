@@ -40,7 +40,7 @@ module.exports = {
 
     var opts = _.extend({}, defaults, o);
     if (opts.style && path.basename(opts.style).indexOf('.') === -1) {
-      opts.style = path.join(opts.style, replaceExtension(opts.name, '.' + opts.processor))
+      opts.style = path.join(opts.style, replaceExtension(opts.name, '.' + opts.processor));
     }
     vfs.src(opts.src)
       .pipe(sprite(opts))
