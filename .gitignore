@@ -4,3 +4,4 @@ coverage
 *.log
 build
 test/dist
+npm-debug.log
