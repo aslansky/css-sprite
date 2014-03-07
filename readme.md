@@ -39,7 +39,7 @@ Options:
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
    -n, --name             name of the sprite file  [sprite.png]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
-   -s, --style           file to write css to, if ommited no css is written
+   -s, --style           file to write css to, if omitted no css is written
    -w, --watch            continuously create sprite
    --margin               margin in px between tiles  [5]
    --orientation          orientation of the sprite image  [vertical]
@@ -55,7 +55,7 @@ sprite.create(options, cb);
 * **src:** Array or string of globs to find source images to put into the sprite.  [required]
 * **out:** path of directory to write sprite file to  [process.cwd()]
 * **name:** name of the sprite file  [sprite.png]
-* **style:** file to write css to, if ommited no css is written
+* **style:** file to write css to, if omitted no css is written
 * **cssPath:** http path to images on the web server (relative to css path or absolute)  [../images]
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
 * **orientation:** orientation of the sprite image  [vertical]
