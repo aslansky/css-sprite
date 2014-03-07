@@ -6,7 +6,6 @@ var gaze = require('gaze');
 var opts = require('nomnom')
   .option('out', {
     position: 0,
-    abbr: 'o',
     required: true,
     metavar: 'DIR',
     default: process.cwd(),
@@ -14,7 +13,6 @@ var opts = require('nomnom')
   })
   .option('src', {
     position: 1,
-    abbr: 's',
     required: true,
     list: true,
     metavar: 'GLOB',
@@ -43,7 +41,7 @@ var opts = require('nomnom')
     help: 'output format of the css. one of css, less, sass, scss or stylus'
   })
   .option('style', {
-    abbr: 'st',
+    abbr: 's',
     help: 'file to write css to, if ommited no css is written'
   })
   .option('watch', {

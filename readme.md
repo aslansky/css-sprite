@@ -39,7 +39,7 @@ Options:
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
    -n, --name             name of the sprite file  [sprite.png]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
-   -st, --style           file to write css to, if ommited no css is written
+   -s, --style           file to write css to, if ommited no css is written
    -w, --watch            continuously create sprite
    --margin               margin in px between tiles  [5]
    --orientation          orientation of the sprite image  [vertical]
@@ -144,7 +144,7 @@ module.exports = function(grunt) {
 
   // Load the plugin that provides the "css-sprite" task.
   grunt.loadNpmTasks('css-sprite');
-  
+
   // Default task(s).
   grunt.registerTask('default', ['css_sprite']);
 };

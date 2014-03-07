@@ -42,6 +42,7 @@ module.exports = {
     if (opts.style && path.basename(opts.style).indexOf('.') === -1) {
       opts.style = path.join(opts.style, replaceExtension(opts.name, '.' + opts.processor));
     }
+    console.log(opts);
     vfs.src(opts.src)
       .pipe(sprite(opts))
       .pipe(es.map(writeFile))
