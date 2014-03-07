@@ -151,6 +151,3 @@ module.exports = function(grunt) {
 ```
 
 Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for the `sprite.create` function with the exception of `src` and `out`.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aslansky/css-sprite/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
