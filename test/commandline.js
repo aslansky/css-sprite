@@ -26,8 +26,8 @@ describe('css-sprite cli (bin/cli.js)', function () {
         fs.readFile('./test/dist/sprite.png', function (err, png) {
           var img = new Image();
           img.src = png;
-          img.width.should.equal(56);
-          img.height.should.equal(125);
+          img.width.should.equal(138);
+          img.height.should.equal(552);
           fs.unlinkSync('./test/dist/sprite.png');
           fs.rmdirSync('./test/dist');
           done();

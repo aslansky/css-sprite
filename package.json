@@ -1,6 +1,6 @@
 {
   "name": "css-sprite",
-  "version": "0.6.3",
+  "version": "0.7.0-beta1",
   "description": "css sprite generator",
   "license": "MIT",
   "repository": {
@@ -26,8 +26,8 @@
     "test": "mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "coverage": "istanbul cover _mocha --report html -- -R spec",
-    "hint": "jshint lib/*.js index.js",
-    "style": "jscs test/*.js lib/*.js index.js"
+    "hint": "jshint lib/**/*.js index.js",
+    "style": "jscs test/*.js lib/**/*.js index.js"
   },
   "main": "./index.js",
   "keywords": [
@@ -49,17 +49,24 @@
     "lodash": "^2.4.1",
     "nomnom": "^1.6.2",
     "vinyl": "^0.2.3",
-    "event-stream": "^3.1.0",
     "graceful-fs": "^2.0.1",
     "mkdirp": "^0.3.5",
     "gaze": "^0.5.0",
-    "imageinfo": "^1.0.4"
+    "imageinfo": "^1.0.4",
+    "through2": "^0.4.1",
+    "mustache": "^0.8.1"
   },
   "devDependencies": {
     "mocha": "^1.17.1",
     "mocha-lcov-reporter": "^0.0.1",
     "coveralls": "^2.8.0",
     "istanbul": "^0.2.6",
-    "should": "^3.1.3"
+    "should": "^3.1.3",
+    "async": "^0.2.10",
+    "stylus": "^0.42.3",
+    "node-sass": "^0.8.1",
+    "less": "^1.7.0",
+    "clean-css": "^2.1.5",
+    "grunt": "^0.4.3"
   }
 }

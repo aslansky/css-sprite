@@ -1,0 +1,35 @@
+{{#items}}
+${{name}}: {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}}
+{{/items}}
+
+=sprite-width($sprite)
+  width: nth($sprite, 3)
+
+=sprite-height($sprite)
+  height: nth($sprite, 4)
+
+=sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 1)
+  $sprite-offset-y: nth($sprite, 2)
+  background-position: $sprite-offset-x  $sprite-offset-y
+
+=sprite($sprite)
+  +sprite-position($sprite)
+  background-repeat: no-repeat
+  overflow: hidden
+  display: block
+  +sprite-width($sprite)
+  +sprite-height($sprite)
+
+{{#sprite}}
+{{class}}
+  background-image: url('{{{escaped_image}}}')
+
+{{/sprite}}
+{{#retina}}
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  {{class}}
+    background-image: url('{{{escaped_image}}}')
+    background-size: {{px.total_width}} {{px.total_height}}
+
+{{/retina}}

@@ -4,7 +4,11 @@
 
 > A css sprite generator.
 
-> Generates a sprite file and the propper css file out of a directory with images. It can also generate style files with base64 encoded images.
+> Generates sprites and propper css files out of a directory of images.
+
+> Supports retina sprites.
+
+> Can inline base64 encoded sprites.
 
 ## Requirements
 
@@ -35,14 +39,16 @@ out     path of directory to write sprite file to
 src     glob strings to find source images to put into the sprite
 
 Options:
-   -b, --base64           instead of creating a sprite, write base64 encoded images to css (css file will be written to <out>)
+   -b, --base64           create css with base64 encoded sprite (css file will be written to <out>)
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
-   -n, --name             name of the sprite file  [sprite.png]
+   -n, --name             name of sprite file  [sprite.png]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
-   -s, --style           file to write css to, if omitted no css is written
+   -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
+   -s, --style            file to write css to, if ommited no css is written
    -w, --watch            continuously create sprite
    --margin               margin in px between tiles  [5]
    --orientation          orientation of the sprite image  [vertical]
+   --prefix               prefix for the class name used in css (without .) [icon]
 ```
 
 ## Programatic usage
@@ -54,13 +60,16 @@ sprite.create(options, cb);
 ### Options
 * **src:** Array or string of globs to find source images to put into the sprite.  [required]
 * **out:** path of directory to write sprite file to  [process.cwd()]
-* **name:** name of the sprite file  [sprite.png]
-* **style:** file to write css to, if omitted no css is written
+* **base64:** when true instead of creating a sprite writes base64 encoded images to css (css file will be written to `<out>`)
 * **cssPath:** http path to images on the web server (relative to css path or absolute)  [../images]
+* **name:** name of the sprite file  [sprite.png]
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
-* **orientation:** orientation of the sprite image  [vertical]
+* **retina:** generate both retina and standard sprites. src images have to be in retina resolution
+* **style:** file to write css to, if omitted no css is written
 * **margin:** margin in px between tiles  [5]
-* **base64:** when true instead of creating a sprite writes base64 encoded images to css (css file will be written to ```<out>```)
+* **orientation:** orientation of the sprite image [vertical]
+* **prefix:** prefix for the class name used in css (without .) [icon]
+
 
 ### Example
 ```
@@ -151,3 +160,66 @@ module.exports = function(grunt) {
 ```
 
 Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for the `sprite.create` function with the exception of `src` and `out`.
+
+
+## Usage with [sass](http://sass-lang.com/) / [less](http://lesscss.org/) / [stylus](http://learnboost.github.io/stylus/)
+
+#### [scss](http://sass-lang.com/) example
+
+```
+@import 'sprite'; // the generated style file (sprite.scss)
+
+// camera icon (camera.png in src directory)
+.icon-camera {
+  @include sprite($camera);
+}
+
+// cart icon (cart.png in src directory)
+.icon-cart {
+  @include sprite($cart);
+}
+```
+
+#### [sass](http://sass-lang.com/) example
+
+```
+@import 'sprite' // the generated style file (sprite.sass)
+
+// camera icon (camera.png in src directory)
+.icon-camera
+  +sprite($camera)
+
+// cart icon (cart.png in src directory)  
+.icon-cart
+  +sprite($cart)
+```
+
+#### [less](http://lesscss.org/) example
+
+```
+@import 'sprite'; // the generated style file (sprite.less)
+
+// camera icon (camera.png in src directory)
+.icon-camera {
+  .sprite(@camera);
+}
+
+// cart icon (cart.png in src directory)
+.icon-cart {
+  .sprite(@cart);
+}
+```
+
+#### [stylus](http://learnboost.github.io/stylus/) example
+
+```
+@import 'sprite' // the generated style file (sprite.styl)
+
+// camera icon (camera.png in src directory)
+.icon-camera
+  sprite($camera)
+  
+// cart icon (cart.png in src directory)
+.icon-cart
+  sprite($cart)
+```

@@ -22,6 +22,7 @@ module.exports = function(grunt) {
       cssPath: '../images',
       processor: 'css',
       orientation: 'vertical',
+      retina: false,
       margin: 5
     });
 

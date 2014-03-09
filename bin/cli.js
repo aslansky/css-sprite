@@ -21,7 +21,7 @@ var opts = require('nomnom')
   .option('base64', {
     abbr: 'b',
     flag: true,
-    help: 'instead of creating a sprite, write base64 encoded images to css (css file will be written to <out>)'
+    help: 'create css with base64 encoded sprite (css file will be written to <out>)'
   })
   .option('cssPath', {
     abbr: 'c',
@@ -32,13 +32,18 @@ var opts = require('nomnom')
   .option('name', {
     abbr: 'n',
     default: 'sprite.png',
-    help: 'name of the sprite file'
+    help: 'name of sprite file'
   })
   .option('processor', {
     abbr: 'p',
     choices: ['css', 'less', 'sass', 'scss', 'stylus'],
     default: 'css',
     help: 'output format of the css. one of css, less, sass, scss or stylus'
+  })
+  .option('retina', {
+    abbr: 'r',
+    flag: true,
+    help: 'generate both retina and standard sprites. src images have to be in retina resolution'
   })
   .option('style', {
     abbr: 's',
@@ -57,6 +62,9 @@ var opts = require('nomnom')
     choices: ['vertical', 'horizontal'],
     default: 'vertical',
     help: 'orientation of the sprite image'
+  })
+  .option('prefix', {
+    help: 'prefix for the class name used in css (without .)'
   })
   .script('css-sprite')
   .parse();

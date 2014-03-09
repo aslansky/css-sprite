@@ -1,17 +1,22 @@
 'use strict';
 
 var sprite = require('./lib/css-sprite');
-var es = require('event-stream');
+var through2 = require('through2');
 var vfs = require('vinyl-fs');
-var gfs = require('graceful-fs');
+var fs = require('graceful-fs');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var replaceExtension = require('./lib/replace-extension');
 var _ = require('lodash');
+var noop = function () {};
 
-var writeFile = function (file, cb) {
+var writeFile = function (file, enc, cb) {
+  var stream = this;
   mkdirp(file.base, function () {
-    gfs.writeFile(file.path, file.contents, cb);
+    fs.writeFile(file.path, file.contents, function () {
+      stream.push(file);
+      cb();
+    });
   });
 };
 
@@ -23,6 +28,7 @@ var defaults = {
   cssPath: '../images',
   processor: 'css',
   orientation: 'vertical',
+  retina: false,
   margin: 5
 };
 
@@ -44,7 +50,8 @@ module.exports = {
     }
     vfs.src(opts.src)
       .pipe(sprite(opts))
-      .pipe(es.map(writeFile))
+      .pipe(through2.obj(writeFile))
+      .on('data', noop)
       .on('end', function () {
         if (_.isFunction(cb)) {
           cb();
