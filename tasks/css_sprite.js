@@ -23,13 +23,13 @@ module.exports = function(grunt) {
       processor: 'css',
       orientation: 'vertical',
       retina: false,
-      margin: 5
+      margin: 5,
+      prefix: 'icon'
     });
 
     var done = this.async();
-
     this.files.forEach(function(f) {
-      options.src = f.src;
+      options.src = f.orig.src;
       options.name = path.basename(f.dest);
       options.out = path.dirname(f.dest);
       sprite.create(options, function () {
