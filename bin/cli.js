@@ -68,10 +68,10 @@ var opts = require('nomnom')
   })
   .script('css-sprite')
   .parse();
-
+  
 if (opts.watch) {
   gaze(opts.src, function () {
-    console.log('Watching for file changes ...')
+    console.log('Watching for file changes ...');
     this.on('all', function () {
       sprite.create(opts, function () {
         console.log('> Sprite created in ' + opts.out);
