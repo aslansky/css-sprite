@@ -101,8 +101,7 @@ gulp.task('sprites', function () {
       cssPath: './img',
       processor: 'scss'
     }))
-    .pipe(gulpif('*.png', gulp.dest('./dist/img/')))
-    .pipe(gulpif('*.scss', gulp.dest('./dist/scss/')));
+    .pipe(gulpif('*.png', gulp.dest('./dist/img/'), gulp.dest('./dist/scss/')))
 });
 // generate scss with base64 encoded images
 gulp.task('base64', function () {
@@ -218,7 +217,7 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 // camera icon (camera.png in src directory)
 .icon-camera
   sprite($camera)
-  
+
 // cart icon (cart.png in src directory)
 .icon-cart
   sprite($cart)
