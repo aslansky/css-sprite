@@ -247,4 +247,23 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         done();
       })
   });
+  it('should return an object stream with a binary-tree sprite', function (done) {
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites.png',
+        orientation: 'binary-tree'
+      }))
+      .pipe(through2.obj(function (file, enc, cb) {
+        var img = new Image();
+        img.src = file.contents;
+        file.path.should.equal('dist/img/sprites.png');
+        file.relative.should.equal('sprites.png');
+        img.width.should.equal(276);
+        img.height.should.equal(276);
+        cb();
+      }))
+      .on('data', noop)
+      .on('end', done);
+  });
 });

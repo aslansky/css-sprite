@@ -59,7 +59,7 @@ var opts = require('nomnom')
     help: 'margin in px between tiles'
   })
   .option('orientation', {
-    choices: ['vertical', 'horizontal'],
+    choices: ['vertical', 'horizontal', 'binary-tree'],
     default: 'vertical',
     help: 'orientation of the sprite image'
   })
