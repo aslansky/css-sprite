@@ -66,6 +66,25 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .on('data', noop)
       .on('end', done);
   });
+  it('should return a object stream with a sprite in binary-tree format', function (done) {
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites.png',
+        orientation: 'binary-tree'
+      }))
+      .pipe(through2.obj(function (file, enc, cb) {
+        var img = new Image();
+        img.src = file.contents;
+        file.path.should.equal('dist/img/sprites.png');
+        file.relative.should.equal('sprites.png');
+        img.width.should.equal(276);
+        img.height.should.equal(276);
+        cb();
+      }))
+      .on('data', noop)
+      .on('end', done);
+  });
   it('should return a object stream with a sprite and a css file', function (done) {
     var png, css;
     vfs.src('./test/fixtures/**')
