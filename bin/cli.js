@@ -40,6 +40,10 @@ var opts = require('nomnom')
     default: 'css',
     help: 'output format of the css. one of css, less, sass, scss or stylus'
   })
+  .option('template', {
+    abbr: 't',
+    help: 'output template file, overrides processor option'
+  })
   .option('retina', {
     abbr: 'r',
     flag: true,

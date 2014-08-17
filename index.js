@@ -27,6 +27,7 @@ var defaults = {
   style: null,
   cssPath: '../images',
   processor: 'css',
+  template: null,
   orientation: 'vertical',
   retina: false,
   margin: 5
