@@ -54,7 +54,8 @@
     "gaze": "^0.6.4",
     "imageinfo": "^1.0.4",
     "through2": "^0.6.1",
-    "mustache": "^0.8.2"
+    "mustache": "^0.8.2",
+    "layout": "~2.0.0"
   },
   "devDependencies": {
     "mocha": "^1.21.4",
