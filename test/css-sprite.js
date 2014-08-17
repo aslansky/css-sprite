@@ -117,6 +117,40 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         done();
       });
   });
+  it('should return a object stream with a sprite and a css file (using a custom template)', function (done) {
+    var png, css;
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites.png',
+        style: './dist/css/sprites.css',
+        template: './test/template/template.mustache'
+      }))
+      .pipe(through2.obj(function (file, enc, cb) {
+        if (file.relative.indexOf('png') > -1) {
+          png = file;
+        }
+        else {
+          css = file;
+        }
+        cb();
+      }))
+      .on('data', noop)
+      .on('end', function () {
+        png.should.be.ok;
+        png.path.should.equal('dist/img/sprites.png');
+        png.relative.should.equal('sprites.png');
+        css.should.be.ok;
+        css.path.should.equal('./dist/css/sprites.css');
+        css.relative.should.equal('sprites.css');
+        css.contents.toString('utf-8').should.containEql('.icon-camera');
+        css.contents.toString('utf-8').should.containEql('.icon-cart');
+        css.contents.toString('utf-8').should.containEql('.icon-command');
+        css.contents.toString('utf-8').should.containEql('.icon-font');
+        css.contents.toString('utf-8').should.containEql('custom: \'template\';');
+        done();
+      });
+  });
   it('should return a object stream with retina sprite, normal sprite and css with media query', function (done) {
     var png = [], css;
     vfs.src('./test/fixtures/**')
@@ -255,7 +289,6 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       });
   });
   it('should throw error when file stream', function (done) {
-
     vfs.src('./test/fixtures/**', {buffer: false})
       .pipe(sprite({
         out: './dist/img',
