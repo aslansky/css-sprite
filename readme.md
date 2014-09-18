@@ -1,6 +1,6 @@
 # css-sprite
 
-[![NPM version](https://badge.fury.io/js/css-sprite.png)](http://badge.fury.io/js/css-sprite) [![Build Status](https://travis-ci.org/aslansky/css-sprite.png?branch=master)](https://travis-ci.org/aslansky/css-sprite) [![Coverage Status](https://coveralls.io/repos/aslansky/css-sprite/badge.png)](https://coveralls.io/r/aslansky/css-sprite) [![Dependencies](https://david-dm.org/aslansky/css-sprite.png)](https://david-dm.org/aslansky/css-sprite)
+[![NPM version](https://badge.fury.io/js/css-sprite.svg)](http://badge.fury.io/js/css-sprite) [![Build Status](https://travis-ci.org/aslansky/css-sprite.svg?branch=master)](https://travis-ci.org/aslansky/css-sprite) [![Coverage Status](https://img.shields.io/coveralls/aslansky/css-sprite.svg)](https://coveralls.io/r/aslansky/css-sprite) [![Dependencies](https://david-dm.org/aslansky/css-sprite.svg)](https://david-dm.org/aslansky/css-sprite)
 
 > A css sprite generator.
 
@@ -12,9 +12,9 @@
 
 ## Requirements
 
-`css-sprite` requires [node-canvas](https://github.com/learnboost/node-canvas) which depends on [Cairo](http://cairographics.org/).
+`css-sprite` requires [node-canvas](https://github.com/Automattic/node-canvas) which depends on [Cairo](http://cairographics.org/).
 
-Please refer to the [installation guide](https://github.com/learnboost/node-canvas/wiki).
+Please refer to the [installation guide](https://github.com/Automattic/node-canvas/wiki).
 
 ## Install
 
@@ -32,7 +32,7 @@ npm install css-sprite -g
 
 ## Command Line Interface
 
-```
+```sh
 Usage: css-sprite <out> <src>... [options]
 
 out     path of directory to write sprite file to
@@ -74,7 +74,7 @@ sprite.create(options, cb);
 
 
 ### Example
-```
+```js
 var sprite = require('css-sprite');
 sprite.create({
   src: ['./src/img/*.png'],
@@ -89,7 +89,7 @@ sprite.create({
 ```
 
 ## Usage with [Gulp](http://gulpjs.com)
-```
+```js
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var sprite = require('css-sprite').stream;
@@ -123,7 +123,7 @@ Options to use `css-sprite` with [Gulp](http://gulpjs.com) are the same as for t
 
 Add `css-sprite` as a dependency to your grunt project and then use something like this in your `gruntfile.js`:
 
-```
+```js
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -167,7 +167,7 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 
 #### [scss](http://sass-lang.com/) example
 
-```
+```scss
 @import 'sprite'; // the generated style file (sprite.scss)
 
 // camera icon (camera.png in src directory)
@@ -183,7 +183,7 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 
 #### [sass](http://sass-lang.com/) example
 
-```
+```sass
 @import 'sprite' // the generated style file (sprite.sass)
 
 // camera icon (camera.png in src directory)
@@ -197,7 +197,7 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 
 #### [less](http://lesscss.org/) example
 
-```
+```less
 @import 'sprite'; // the generated style file (sprite.less)
 
 // camera icon (camera.png in src directory)
@@ -213,7 +213,7 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 
 #### [stylus](http://learnboost.github.io/stylus/) example
 
-```
+```stylus
 @import 'sprite' // the generated style file (sprite.styl)
 
 // camera icon (camera.png in src directory)
