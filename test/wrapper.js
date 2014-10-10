@@ -5,8 +5,7 @@ var sprite = require('../index');
 var fs = require('fs');
 var vfs = require('vinyl-fs');
 var through2 = require('through2');
-var Canvas = require('canvas');
-var Image = Canvas.Image;
+var lwip = require('lwip');
 var noop = function () {};
 
 require('mocha');
@@ -14,16 +13,15 @@ require('mocha');
 describe('css-sprite wrapper (index.js)', function () {
   it('should generate a sprite file', function (done) {
     sprite.create({
-      src: ['./test/fixtures/*.png'],
+      src: ['./test/fixtures/*.*'],
       out: './test/dist',
-      name: 'sprite.png'
+      name: 'sprite'
     }, function () {
       fs.existsSync('./test/dist/sprite.png').should.be.true;
-      fs.readFile('./test/dist/sprite.png', function (err, png) {
-        var img = new Image();
-        img.src = png;
-        img.width.should.equal(138);
-        img.height.should.equal(552);
+      lwip.open('./test/dist/sprite.png', function (err, img) {
+        should(err).not.be.ok;
+        img.width().should.equal(522);
+        img.height().should.equal(1074);
         fs.unlinkSync('./test/dist/sprite.png');
         fs.rmdirSync('./test/dist');
         done();
@@ -34,7 +32,7 @@ describe('css-sprite wrapper (index.js)', function () {
     sprite.create({
       src: ['./test/fixtures/*.png'],
       out: './test/dist',
-      name: 'sprite.png',
+      name: 'sprite',
       style: './test/dist/sprite.css'
     }, function () {
       fs.existsSync('./test/dist/sprite.png').should.be.true;
@@ -55,7 +53,7 @@ describe('css-sprite wrapper (index.js)', function () {
     sprite.create({
       src: ['./test/fixtures/*.png'],
       out: './test/dist',
-      name: 'sprite.png',
+      name: 'sprite',
       style: './test/dist/'
     }, function () {
       fs.existsSync('./test/dist/sprite.png').should.be.true;
@@ -75,15 +73,16 @@ describe('css-sprite wrapper (index.js)', function () {
   it('sprite.stream should return a object stream with a sprite', function (done) {
     vfs.src('./test/fixtures/*.png')
       .pipe(sprite.stream({
-        name: 'sprite.png'
+        name: 'sprite'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
         file.relative.should.equal('sprite.png');
-        img.width.should.equal(138);
-        img.height.should.equal(552);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(138);
+          img.height().should.equal(552);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
@@ -92,7 +91,7 @@ describe('css-sprite wrapper (index.js)', function () {
     (function () {
       sprite.create({
         src: ['./test/fixtures/*.png'],
-        name: 'sprite.png'
+        name: 'sprite'
       });
     }).should.throw(/^output/);
   });
@@ -100,7 +99,7 @@ describe('css-sprite wrapper (index.js)', function () {
     (function () {
       sprite.create({
         out: './test/dist',
-        name: 'sprite.png'
+        name: 'sprite'
       });
     }).should.throw(/^glob/);
   });

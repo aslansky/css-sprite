@@ -29,10 +29,16 @@ var opts = require('nomnom')
     default: '../images',
     help: 'http path to images on the web server (relative to css path or absolute path)'
   })
+  .option('format', {
+    abbr: 'f',
+    choices: ['png', 'jpg'],
+    default: 'png',
+    help: 'output format of the sprite (png or jpg)'
+  })
   .option('name', {
     abbr: 'n',
-    default: 'sprite.png',
-    help: 'name of sprite file'
+    default: 'sprite',
+    help: 'name of sprite file without file extension '
   })
   .option('processor', {
     abbr: 'p',

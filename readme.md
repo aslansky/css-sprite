@@ -12,9 +12,7 @@
 
 ## Requirements
 
-`css-sprite` requires [node-canvas](https://github.com/Automattic/node-canvas) which depends on [Cairo](http://cairographics.org/).
-
-Please refer to the [installation guide](https://github.com/Automattic/node-canvas/wiki).
+Starting with version 0.9 `css-sprite` has no external dpendencies
 
 ## Install
 
@@ -41,15 +39,16 @@ src     glob strings to find source images to put into the sprite
 Options:
    -b, --base64           create css with base64 encoded sprite (css file will be written to <out>)
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
-   -n, --name             name of sprite file  [sprite.png]
+   -f, --format           output format of the sprite (png or jpg)  [png]
+   -n, --name             name of sprite file without file extension  [sprite]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
    -t, --template         output template file, overrides processor option
    -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
    -s, --style            file to write css to, if omitted no css is written
    -w, --watch            continuously create sprite
    --margin               margin in px between tiles  [5]
-   --orientation          orientation of the sprite image (vertical|horizontal|binary-tree) [vertical]
-   --prefix               prefix for the class name used in css (without .) [icon]
+   --orientation          orientation of the sprite image (vertical|horizontal|binary-tree)  [vertical]
+   --prefix               prefix for the class name used in css (without .)
 ```
 
 ## Programatic usage
@@ -63,7 +62,8 @@ sprite.create(options, cb);
 * **out:** path of directory to write sprite file to  [process.cwd()]
 * **base64:** when true instead of creating a sprite writes base64 encoded images to css (css file will be written to `<out>`)
 * **cssPath:** http path to images on the web server (relative to css path or absolute)  [../images]
-* **name:** name of the sprite file  [sprite.png]
+* **format** format of the generated sprite (png or jpg). By default uses png.
+* **name:** name of the sprite file without file extension  [sprite]
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
 * **template:** output template file, overrides processor option
 * **retina:** generate both retina and standard sprites. src images have to be in retina resolution
@@ -79,7 +79,7 @@ var sprite = require('css-sprite');
 sprite.create({
   src: ['./src/img/*.png'],
   out: './dist/img'
-  name: 'sprites.png',
+  name: 'sprites',
   style: './dist/scss/_sprites.scss',
   cssPath: '../img',
   processor: 'scss'
@@ -98,7 +98,7 @@ var sprite = require('css-sprite').stream;
 gulp.task('sprites', function () {
   return gulp.src('./src/img/*.png')
     .pipe(sprite({
-      name: 'sprite.png',
+      name: 'sprite',
       style: '_sprite.scss',
       cssPath: './img',
       processor: 'scss'
