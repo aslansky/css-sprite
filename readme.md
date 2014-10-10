@@ -12,7 +12,7 @@
 
 ## Requirements
 
-Starting with version 0.9 `css-sprite` has no external dpendencies
+Starting with version 0.9 `css-sprite` has no external dependencies
 
 ## Install
 
