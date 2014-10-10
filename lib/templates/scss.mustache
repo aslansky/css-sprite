@@ -10,6 +10,14 @@ ${{name}}: {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}};
   height: nth($sprite, 4);
 }
 
+@function sprite-width($sprite) {
+  @return nth($sprite, 3);
+}
+
+@function sprite-height($sprite) {
+  @return nth($sprite, 4);
+}
+
 @mixin sprite-position($sprite) {
   $sprite-offset-x: nth($sprite, 1);
   $sprite-offset-y: nth($sprite, 2);
