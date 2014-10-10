@@ -23,8 +23,9 @@ var writeFile = function (file, enc, cb) {
 var defaults = {
   src: null,
   out: '',
-  name: 'sprite.png',
+  name: 'sprite',
   style: null,
+  format: 'png',
   cssPath: '../images',
   processor: 'css',
   template: null,

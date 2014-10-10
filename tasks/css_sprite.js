@@ -17,9 +17,10 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       out: '',
-      name: 'sprite.png',
+      name: 'sprite',
       style: null,
       cssPath: '../images',
+      format: 'png',
       processor: 'css',
       orientation: 'vertical',
       retina: false,

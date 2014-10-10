@@ -2,11 +2,9 @@
 
 var should = require('should');
 var sprite = require('../lib/css-sprite');
-var path = require('path');
 var vfs = require('vinyl-fs');
 var through2 = require('through2');
-var Canvas = require('canvas');
-var Image = Canvas.Image;
+var lwip = require('lwip');
 var noop = function () {};
 
 require('mocha');
@@ -16,16 +14,17 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png'
+        name: 'sprites'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
         file.path.should.equal('dist/img/sprites.png');
         file.relative.should.equal('sprites.png');
-        img.width.should.equal(138);
-        img.height.should.equal(552);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(522);
+          img.height().should.equal(1074);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
@@ -34,15 +33,16 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         margin: 20
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
-        img.width.should.equal(168);
-        img.height.should.equal(672);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(552);
+          img.height().should.equal(1224);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
@@ -51,17 +51,18 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         orientation: 'horizontal'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
         file.path.should.equal('dist/img/sprites.png');
         file.relative.should.equal('sprites.png');
-        img.width.should.equal(552);
-        img.height.should.equal(138);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(1074);
+          img.height().should.equal(522);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
@@ -70,17 +71,18 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         orientation: 'binary-tree'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
         file.path.should.equal('dist/img/sprites.png');
         file.relative.should.equal('sprites.png');
-        img.width.should.equal(276);
-        img.height.should.equal(276);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(660);
+          img.height().should.equal(660);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
@@ -90,7 +92,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         style: './dist/css/sprites.css'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
@@ -122,7 +124,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         style: './dist/css/sprites.css',
         template: './test/template/template.mustache'
       }))
@@ -156,13 +158,13 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         style: './dist/css/sprites.css',
         retina: true
       }))
       .pipe(through2.obj(function (file, enc, cb) {
         if (file.relative.indexOf('png') > -1) {
-          png.push(file)
+          png.push(file);
         }
         else {
           css = file;
@@ -171,17 +173,19 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       }))
       .on('data', noop)
       .on('end', function () {
-        var normal = new Image();
-        var retina = new Image();
-        normal.src = png[0].contents;
-        retina.src = png[1].contents;
+        css.contents.toString('utf-8').should.containEql('@media');
         png.length.should.equal(2);
         png[0].relative.should.equal('sprites.png');
         png[1].relative.should.equal('sprites-x2.png');
-        retina.width.should.equal(normal.width * 2);
-        retina.height.should.equal(normal.height * 2);
-        css.contents.toString('utf-8').should.containEql('@media');
-        done();
+        lwip.open(png[0].contents, 'png', function (err, normal) {
+          should(err).not.be.ok;
+          lwip.open(png[1].contents, 'png', function (err, retina) {
+            should(err).not.be.ok;
+            retina.width().should.equal(normal.width() * 2);
+            retina.height().should.equal(normal.height() * 2);
+            done();
+          });
+        });
       });
   });
   it('should return a object stream with a css file with custom class names', function (done) {
@@ -189,7 +193,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         style: './dist/css/sprites.css',
         prefix: 'test-selector'
       }))
@@ -213,7 +217,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         processor: 'scss',
         style: './dist/css/sprites.scss'
       }))
@@ -276,7 +280,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/empty/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png'
+        name: 'sprites'
       }))
       .pipe(through2.obj(function (f, cb) {
         file = file;
@@ -292,28 +296,49 @@ describe('css-sprite (lib/css-sprite.js)', function () {
     vfs.src('./test/fixtures/**', {buffer: false})
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png'
+        name: 'sprites'
       }))
       .on('error', function (err) {
         err.toString().should.equal('Error: Streaming not supported');
         done();
-      })
+      });
   });
   it('should return an object stream with a binary-tree sprite', function (done) {
     vfs.src('./test/fixtures/**')
       .pipe(sprite({
         out: './dist/img',
-        name: 'sprites.png',
+        name: 'sprites',
         orientation: 'binary-tree'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        var img = new Image();
-        img.src = file.contents;
         file.path.should.equal('dist/img/sprites.png');
         file.relative.should.equal('sprites.png');
-        img.width.should.equal(276);
-        img.height.should.equal(276);
-        cb();
+        lwip.open(file.contents, 'png', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(660);
+          img.height().should.equal(660);
+          cb();
+        });
+      }))
+      .on('data', noop)
+      .on('end', done);
+  });
+  it('should return a object stream with a jpg sprite', function (done) {
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites',
+        format: 'jpg'
+      }))
+      .pipe(through2.obj(function (file, enc, cb) {
+        file.path.should.equal('dist/img/sprites.jpg');
+        file.relative.should.equal('sprites.jpg');
+        lwip.open(file.contents, 'jpg', function (err, img) {
+          should(err).not.be.ok;
+          img.width().should.equal(522);
+          img.height().should.equal(1074);
+          cb();
+        });
       }))
       .on('data', noop)
       .on('end', done);
