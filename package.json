@@ -1,6 +1,6 @@
 {
   "name": "css-sprite",
-  "version": "0.8.0-beta2",
+  "version": "0.9.0-beta",
   "description": "css sprite generator",
   "license": "MIT",
   "repository": {
@@ -64,7 +64,6 @@
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.2",
     "should": "^4.0.4",
-    "async": "^0.9.0",
     "stylus": "^0.49.1",
     "node-sass": "^0.9.6",
     "less": "^1.7.5",
