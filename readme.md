@@ -40,13 +40,15 @@ Options:
    -b, --base64           create css with base64 encoded sprite (css file will be written to <out>)
    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
    -f, --format           output format of the sprite (png or jpg)  [png]
-   -n, --name             name of sprite file without file extension  [sprite]
+   -n, --name             name of sprite file without file extension   [sprite]
    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
    -t, --template         output template file, overrides processor option
    -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
    -s, --style            file to write css to, if omitted no css is written
    -w, --watch            continuously create sprite
+   --background           background color of the sprite in hex  [#FFFFFF]
    --margin               margin in px between tiles  [5]
+   --opacity              background opacity of the sprite. defaults to 0 when png or 100 when jpg  [0]
    --orientation          orientation of the sprite image (vertical|horizontal|binary-tree)  [vertical]
    --prefix               prefix for the class name used in css (without .)
 ```
@@ -67,8 +69,10 @@ sprite.create(options, cb);
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
 * **template:** output template file, overrides processor option
 * **retina:** generate both retina and standard sprites. src images have to be in retina resolution
+* **background** background color of the sprite in hex. Defaults to #FFFFFF
 * **style:** file to write css to, if omitted no css is written
 * **margin:** margin in px between tiles  [5]
+* **opacity** background opacity of the sprite between 0 and 100. Defaults to 0 when png or 100 when jpg
 * **orientation:** orientation of the sprite image (vertical|horizontal|binary-tree) [vertical]
 * **prefix:** prefix for the class name used in css (without .) [icon]
 

@@ -25,7 +25,9 @@ module.exports = function(grunt) {
       orientation: 'vertical',
       retina: false,
       margin: 5,
-      prefix: 'icon'
+      prefix: 'icon',
+      background: '#FFFFFF',
+      opacity: 0
     });
 
     var done = this.async();

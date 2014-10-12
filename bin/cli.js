@@ -64,9 +64,17 @@ var opts = require('nomnom')
     flag: true,
     help: 'continuously create sprite'
   })
+  .option('background', {
+    default: '#FFFFFF',
+    help: 'background color of the sprite in hex'
+  })
   .option('margin', {
     default: 5,
     help: 'margin in px between tiles'
+  })
+  .option('opacity', {
+    default: 0,
+    help: 'background opacity of the sprite. defaults to 0 when png or 100 when jpg'
   })
   .option('orientation', {
     choices: ['vertical', 'horizontal', 'binary-tree'],

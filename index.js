@@ -31,7 +31,9 @@ var defaults = {
   template: null,
   orientation: 'vertical',
   retina: false,
-  margin: 5
+  background: '#FFFFFF',
+  margin: 5,
+  opacity: 0,
 };
 
 module.exports = {
