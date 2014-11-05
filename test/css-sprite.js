@@ -2,6 +2,7 @@
 
 var should = require('should');
 var sprite = require('../lib/css-sprite');
+var path = require('path');
 var vfs = require('vinyl-fs');
 var through2 = require('through2');
 var lwip = require('lwip');
@@ -17,7 +18,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         name: 'sprites'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        file.path.should.equal('dist/img/sprites.png');
+        file.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
@@ -55,7 +56,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         orientation: 'horizontal'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        file.path.should.equal('dist/img/sprites.png');
+        file.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
@@ -75,7 +76,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         orientation: 'binary-tree'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        file.path.should.equal('dist/img/sprites.png');
+        file.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
@@ -107,7 +108,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .on('data', noop)
       .on('end', function () {
         png.should.be.ok;
-        png.path.should.equal('dist/img/sprites.png');
+        png.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         png.relative.should.equal('sprites.png');
         css.should.be.ok;
         css.path.should.equal('./dist/css/sprites.css');
@@ -140,7 +141,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .on('data', noop)
       .on('end', function () {
         png.should.be.ok;
-        png.path.should.equal('dist/img/sprites.png');
+        png.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         png.relative.should.equal('sprites.png');
         css.should.be.ok;
         css.path.should.equal('./dist/css/sprites.css');
@@ -233,7 +234,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
       .on('data', noop)
       .on('end', function () {
         png.should.be.ok;
-        png.path.should.equal('dist/img/sprites.png');
+        png.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         png.relative.should.equal('sprites.png');
         css.should.be.ok;
         css.path.should.equal('./dist/css/sprites.scss');
@@ -311,7 +312,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         orientation: 'binary-tree'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        file.path.should.equal('dist/img/sprites.png');
+        file.path.should.equal(path.join('dist', 'img', 'sprites.png'));
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
@@ -331,7 +332,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         format: 'jpg'
       }))
       .pipe(through2.obj(function (file, enc, cb) {
-        file.path.should.equal('dist/img/sprites.jpg');
+        file.path.should.equal(path.join('dist', 'img', 'sprites.jpg'));
         file.relative.should.equal('sprites.jpg');
         lwip.open(file.contents, 'jpg', function (err, img) {
           should(err).not.be.ok;
