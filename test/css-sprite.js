@@ -177,7 +177,7 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         css.contents.toString('utf-8').should.containEql('@media');
         png.length.should.equal(2);
         png[0].relative.should.equal('sprites.png');
-        png[1].relative.should.equal('sprites-x2.png');
+        png[1].relative.should.equal('sprites@2x.png');
         lwip.open(png[0].contents, 'png', function (err, normal) {
           should(err).not.be.ok;
           lwip.open(png[1].contents, 'png', function (err, retina) {
