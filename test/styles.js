@@ -36,11 +36,10 @@ describe('styles (lib/templates)', function () {
           });
         },
         function (cb) {
-          var parser = new(less.Parser)({
+          less.render(fs.readFileSync(path.join(__dirname, 'styles/style.less')).toString(), {
             paths: [path.join(__dirname, 'dist/')]
-          });
-          parser.parse(fs.readFileSync(path.join(__dirname, 'styles/style.less')).toString(), function (e, tree) {
-            cb(null, tree.toCSS({compress: true}));
+          }, function (err, output) {
+            cb(err, output.css);
           });
         },
         function (cb) {

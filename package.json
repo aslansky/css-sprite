@@ -1,6 +1,6 @@
 {
   "name": "css-sprite",
-  "version": "0.9.0-beta2",
+  "version": "0.9.0",
   "description": "css sprite generator",
   "license": "MIT",
   "repository": {
@@ -44,10 +44,10 @@
   ],
   "dependencies": {
     "async": "^0.9.0",
-    "color": "^0.7.1",
+    "color": "^0.7.3",
     "cssesc": "^0.1.0",
     "gaze": "^0.6.4",
-    "graceful-fs": "^3.0.3",
+    "graceful-fs": "^3.0.4",
     "imageinfo": "^1.0.4",
     "json2css": "^5.2.1",
     "layout": "~2.0.0",
@@ -55,21 +55,21 @@
     "lwip": "0.0.5",
     "mkdirp": "^0.5.0",
     "mustache": "^0.8.2",
-    "nomnom": "^1.8.0",
+    "nomnom": "^1.8.1",
     "through2": "^0.6.3",
-    "vinyl": "^0.4.3",
-    "vinyl-fs": "0.3.9"
+    "vinyl": "^0.4.5",
+    "vinyl-fs": "0.3.13"
   },
   "devDependencies": {
-    "mocha": "^1.21.4",
+    "mocha": "^2.0.1",
     "mocha-lcov-reporter": "^0.0.1",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.2",
-    "should": "^4.0.4",
-    "stylus": "^0.49.1",
-    "node-sass": "^0.9.6",
-    "less": "^1.7.5",
-    "clean-css": "^2.2.16",
+    "should": "^4.3.0",
+    "stylus": "^0.49.3",
+    "node-sass": "^1.2.2",
+    "less": "^2.0.0",
+    "clean-css": "^2.2.17",
     "grunt": "^0.4.5"
   }
 }

@@ -67,7 +67,7 @@ sprite.create(options, cb);
 * **format** format of the generated sprite (png or jpg). By default uses png.
 * **name:** name of the sprite file without file extension  [sprite]
 * **processor:** output format of the css. one of css, less, sass, scss or stylus  [css]
-* **template:** output template file, overrides processor option
+* **template:** output template file, overrides processor option (must be a [mustache](http://mustache.github.io/) template)
 * **retina:** generate both retina and standard sprites. src images have to be in retina resolution
 * **background** background color of the sprite in hex. Defaults to #FFFFFF
 * **style:** file to write css to, if omitted no css is written
