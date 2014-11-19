@@ -228,3 +228,33 @@ Options to use `css-sprite` with [Grunt](http://gruntjs.com) are the same as for
 .icon-cart
   sprite($cart)
 ```
+
+## Using your own template
+
+To use your own [mustache](http://mustache.github.io/) template for style file creation pass in the -t option followed by the template path. The following variables are available in the mustache template:
+
+* **items** -- array of objects with the sprite tiles
+  * **name** -- name of the tile
+  * **x** -- x position
+  * **y** -- y position
+  * **width**
+  * **height**
+  * **offset_x** -- x offset within the sprite
+  * **offset_y** -- y offset within the sprite
+  * **class** -- class name of the tile
+  * **px** -- object with pixel values instead of raw data (e.g width: '250px')
+      * **x**, **y**, **offset_x**, **offset_y**, **height**, **width**, **total_height**, **total_width**
+* **sprite** -- object with information about the sprite itself
+  * **name** -- name of the sprite
+  * **image** -- css path to sprite or base64 encode string
+  * **escaped_image** -- escaped css path to sprite or base64 encode string
+  * **class** -- class name of the sprite
+* **retina** -- object with information about the retina sprite
+  * **name** -- name of the retina sprite
+  * **image** -- css path to retina sprite
+  * **escaped_image** -- escaped css path to retina sprite
+  * **class** -- class name of the retina sprite
+  * **total_width** -- height of the retina sprite (for background-size)
+  * **total_height** -- width of the retina sprite (for background-size)
+  * **px** -- object with pixel values
+    * **total_width**, **total_height**
