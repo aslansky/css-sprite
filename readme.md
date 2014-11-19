@@ -258,3 +258,5 @@ To use your own [mustache](http://mustache.github.io/) template for style file c
   * **total_height** -- width of the retina sprite (for background-size)
   * **px** -- object with pixel values
     * **total_width**, **total_height**
+
+Please have a look at the [included templates](https://github.com/aslansky/css-sprite/tree/master/lib/templates) to see how they work.
