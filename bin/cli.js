@@ -69,7 +69,7 @@ var opts = require('nomnom')
     help: 'background color of the sprite in hex'
   })
   .option('margin', {
-    default: 5,
+    default: 4,
     help: 'margin in px between tiles'
   })
   .option('opacity', {
