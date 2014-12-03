@@ -22,8 +22,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(522);
-          img.height().should.equal(1074);
+          img.width().should.equal(520);
+          img.height().should.equal(1064);
           cb();
         });
       }))
@@ -60,8 +60,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(1074);
-          img.height().should.equal(522);
+          img.width().should.equal(1064);
+          img.height().should.equal(520);
           cb();
         });
       }))
@@ -80,8 +80,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(660);
-          img.height().should.equal(660);
+          img.width().should.equal(656);
+          img.height().should.equal(656);
           cb();
         });
       }))
@@ -316,8 +316,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         file.relative.should.equal('sprites.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(660);
-          img.height().should.equal(660);
+          img.width().should.equal(656);
+          img.height().should.equal(656);
           cb();
         });
       }))
@@ -336,8 +336,8 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         file.relative.should.equal('sprites.jpg');
         lwip.open(file.contents, 'jpg', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(522);
-          img.height().should.equal(1074);
+          img.width().should.equal(520);
+          img.height().should.equal(1064);
           cb();
         });
       }))

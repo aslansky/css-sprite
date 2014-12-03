@@ -20,8 +20,8 @@ describe('css-sprite wrapper (index.js)', function () {
       fs.existsSync('./test/dist/sprite.png').should.be.true;
       lwip.open('./test/dist/sprite.png', function (err, img) {
         should(err).not.be.ok;
-        img.width().should.equal(522);
-        img.height().should.equal(1074);
+        img.width().should.equal(520);
+        img.height().should.equal(1064);
         fs.unlinkSync('./test/dist/sprite.png');
         fs.rmdirSync('./test/dist');
         done();
@@ -79,8 +79,8 @@ describe('css-sprite wrapper (index.js)', function () {
         file.relative.should.equal('sprite.png');
         lwip.open(file.contents, 'png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(138);
-          img.height().should.equal(552);
+          img.width().should.equal(136);
+          img.height().should.equal(544);
           cb();
         });
       }))

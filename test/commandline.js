@@ -24,8 +24,8 @@ describe('css-sprite cli (bin/cli.js)', function () {
         fs.existsSync('./test/dist/sprite.png').should.be.true;
         lwip.open('./test/dist/sprite.png', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(522);
-          img.height().should.equal(1074);
+          img.width().should.equal(520);
+          img.height().should.equal(1064);
           fs.unlinkSync('./test/dist/sprite.png');
           fs.rmdirSync('./test/dist');
           done();
@@ -39,8 +39,8 @@ describe('css-sprite cli (bin/cli.js)', function () {
         fs.existsSync('./test/dist/sprite.jpg').should.be.true;
         lwip.open('./test/dist/sprite.jpg', function (err, img) {
           should(err).not.be.ok;
-          img.width().should.equal(522);
-          img.height().should.equal(1074);
+          img.width().should.equal(520);
+          img.height().should.equal(1064);
           fs.unlinkSync('./test/dist/sprite.jpg');
           fs.rmdirSync('./test/dist');
           done();
