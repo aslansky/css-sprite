@@ -32,7 +32,7 @@ var defaults = {
   orientation: 'vertical',
   retina: false,
   background: '#FFFFFF',
-  margin: 5,
+  margin: 4,
   opacity: 0,
 };
 
