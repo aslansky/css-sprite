@@ -51,6 +51,7 @@ Options:
    --opacity              background opacity of the sprite. defaults to 0 when png or 100 when jpg  [0]
    --orientation          orientation of the sprite image (vertical|horizontal|binary-tree)  [vertical]
    --prefix               prefix for the class name used in css (without .)
+   --no-sort              disable sorting of layout
 ```
 
 ## Programatic usage
@@ -75,6 +76,7 @@ sprite.create(options, cb);
 * **opacity** background opacity of the sprite between 0 and 100. Defaults to 0 when png or 100 when jpg
 * **orientation:** orientation of the sprite image (vertical|horizontal|binary-tree) [vertical]
 * **prefix:** prefix for the class name used in css (without .) [icon]
+* **sort:** enable/disable sorting of layout [true]
 
 
 ### Example

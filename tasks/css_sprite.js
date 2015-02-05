@@ -27,6 +27,7 @@ module.exports = function(grunt) {
       margin: 5,
       prefix: 'icon',
       background: '#FFFFFF',
+      sort: true,
       opacity: 0
     });
 

@@ -84,11 +84,18 @@ var opts = require('nomnom')
   .option('prefix', {
     help: 'prefix for the class name used in css (without .)'
   })
+  .option('no-sort', {
+    flag: true,
+    help: 'disable sorting of layout'
+  })
   .script('css-sprite')
   .parse();
 
 if (opts.watch) {
   gaze(opts.src, function () {
+    if (opts['no-sort']) {
+      opts.sort = false;
+    }
     console.log('Watching for file changes ...');
     this.on('all', function () {
       sprite.create(opts, function () {
@@ -98,5 +105,9 @@ if (opts.watch) {
   });
 }
 else {
+  if (opts['no-sort']) {
+    opts.sort = false;
+  }
+
   sprite.create(opts);
 }

@@ -34,6 +34,7 @@ var defaults = {
   background: '#FFFFFF',
   margin: 4,
   opacity: 0,
+  sort: true
 };
 
 module.exports = {
