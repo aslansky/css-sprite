@@ -22,6 +22,7 @@ describe('styles (lib/templates)', function () {
       }, cb);
     },
     function () {
+      console.log('second');
       async.series([
         function (cb) {
           sass.render({
@@ -48,9 +49,9 @@ describe('styles (lib/templates)', function () {
             .render(cb);
         }
       ], function (err, results) {
-        new CleanCSS().minify(results[0]).should.equal(new CleanCSS().minify(results[1]));
-        new CleanCSS().minify(results[1]).should.equal(new CleanCSS().minify(results[2]));
-        new CleanCSS().minify(results[2]).should.equal(new CleanCSS().minify(results[0]));
+        new CleanCSS().minify(results[0]).styles.should.equal(new CleanCSS().minify(results[1]).styles);
+        new CleanCSS().minify(results[1]).styles.should.equal(new CleanCSS().minify(results[2]).styles);
+        new CleanCSS().minify(results[2]).styles.should.equal(new CleanCSS().minify(results[0]).styles);
         fs.unlinkSync('./test/dist/sprite.less');
         fs.unlinkSync('./test/dist/sprite.scss');
         fs.unlinkSync('./test/dist/sprite.styl');
