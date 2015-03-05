@@ -28,7 +28,8 @@ module.exports = function(grunt) {
       prefix: 'icon',
       background: '#FFFFFF',
       sort: true,
-      opacity: 0
+      opacity: 0,
+      interpolation: 'grid'
     });
 
     var done = this.async();
