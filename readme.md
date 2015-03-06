@@ -77,6 +77,7 @@ sprite.create(options, cb);
 * **orientation:** orientation of the sprite image (vertical|horizontal|binary-tree) [vertical]
 * **prefix:** prefix for the class name used in css (without .) [icon]
 * **sort:** enable/disable sorting of layout [true]
+* **interpolation** Interpolation algorithm used when scaling retina images to standard definition. Possible values are `nearest-neighbor`,`moving-average`,`linear`,`grid`,`cubic`,`lanczos`. Defaults to `grid`.
 
 
 ### Example
