@@ -44,32 +44,31 @@
   ],
   "dependencies": {
     "async": "^0.9.0",
-    "color": "^0.7.3",
+    "color": "^0.8.0",
     "cssesc": "^0.1.0",
-    "gaze": "^0.6.4",
     "graceful-fs": "^3.0.5",
     "imageinfo": "^1.0.4",
     "json2css": "^6.1.0",
-    "layout": "~2.1.0",
-    "lodash": "^3.1.0",
+    "layout": "~2.2.0",
+    "lodash": "^3.3.1",
     "lwip": "0.0.6",
     "mkdirp": "^0.5.0",
-    "mustache": "^1.0.0",
+    "mustache": "^1.1.0",
     "nomnom": "^1.8.1",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",
-    "vinyl-fs": "0.3.13"
+    "vinyl-fs": "1.0.0"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
-    "mocha-lcov-reporter": "^0.0.1",
+    "mocha-lcov-reporter": "^0.0.2",
     "coveralls": "^2.11.2",
-    "istanbul": "^0.3.5",
-    "should": "^4.6.3",
+    "istanbul": "^0.3.7",
+    "should": "^5.1.0",
     "stylus": "^0.50.0",
-    "node-sass": "^0.9.6",
-    "less": "^2.3.1",
-    "clean-css": "^3.0.9",
+    "node-sass": "^2.0.1",
+    "less": "^2.4.0",
+    "clean-css": "^3.1.4",
     "grunt": "^0.4.5"
   }
 }

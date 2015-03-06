@@ -22,19 +22,13 @@ describe('styles (lib/templates)', function () {
       }, cb);
     },
     function () {
-      console.log('second');
       async.series([
         function (cb) {
-          sass.render({
+          var result = sass.renderSync({
             file: path.join(__dirname, 'styles/style.scss'),
-            outputStyle: 'compressed',
-            success: function (css) {
-              cb(null, css);
-            },
-            error: function (err) {
-              cb(err, null);
-            }
+            outputStyle: 'compressed'
           });
+          cb(null, result.css);
         },
         function (cb) {
           less.render(fs.readFileSync(path.join(__dirname, 'styles/style.less')).toString(), {

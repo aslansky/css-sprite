@@ -2,7 +2,8 @@
 'use strict';
 
 var sprite = require('../index');
-var gaze = require('gaze');
+// var gaze = require('gaze');
+var fs = require('vinyl-fs');
 var opts = require('nomnom')
   .option('out', {
     position: 0,
@@ -92,15 +93,13 @@ var opts = require('nomnom')
   .parse();
 
 if (opts.watch) {
-  gaze(opts.src, function () {
-    if (opts['no-sort']) {
-      opts.sort = false;
-    }
-    console.log('Watching for file changes ...');
-    this.on('all', function () {
-      sprite.create(opts, function () {
-        console.log('> Sprite created in ' + opts.out);
-      });
+  if (opts['no-sort']) {
+    opts.sort = false;
+  }
+  console.log('Watching for file changes ...');
+  fs.watch(opts.src, function () {
+    sprite.create(opts, function () {
+      console.log('> Sprite created in ' + opts.out);
     });
   });
 }
