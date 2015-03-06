@@ -73,6 +73,11 @@ var opts = require('nomnom')
     default: 4,
     help: 'margin in px between tiles'
   })
+  .option('interpolation', {
+    choices: ['nearest-neighbor', 'moving-average', 'linear', 'grid', 'cubic', 'lanczos'],
+    dedault: 'grid',
+    help: 'Interpolation algorithm used when scaling retina images (nearest-neighbor|moving-average|linear|grid|cubic|lanczos)'
+  })
   .option('opacity', {
     default: 0,
     help: 'background opacity of the sprite. defaults to 0 when png or 100 when jpg'
