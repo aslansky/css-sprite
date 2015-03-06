@@ -37,21 +37,22 @@ out     path of directory to write sprite file to
 src     glob strings to find source images to put into the sprite
 
 Options:
-   -b, --base64           create css with base64 encoded sprite (css file will be written to <out>)
-   -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
-   -f, --format           output format of the sprite (png or jpg)  [png]
-   -n, --name             name of sprite file without file extension   [sprite]
-   -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
-   -t, --template         output template file, overrides processor option
-   -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution (doubled dimensions, with even-numbered height and width)
-   -s, --style            file to write css to, if omitted no css is written
-   -w, --watch            continuously create sprite
-   --background           background color of the sprite in hex  [#FFFFFF]
-   --margin               margin in px between tiles  [4]
-   --opacity              background opacity of the sprite. defaults to 0 when png or 100 when jpg  [0]
-   --orientation          orientation of the sprite image (vertical|horizontal|binary-tree)  [vertical]
-   --prefix               prefix for the class name used in css (without .)
-   --no-sort              disable sorting of layout
+    -b, --base64           create css with base64 encoded sprite (css file will be written to <out>)
+    -c, --css-image-path   http path to images on the web server (relative to css path or absolute path)  [../images]
+    -f, --format           output format of the sprite (png or jpg)  [png]
+    -n, --name             name of sprite file without file extension   [sprite]
+    -p, --processor        output format of the css. one of css, less, sass, scss or stylus  [css]
+    -t, --template         output template file, overrides processor option
+    -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
+    -s, --style            file to write css to, if omitted no css is written
+    -w, --watch            continuously create sprite
+    --background           background color of the sprite in hex  [#FFFFFF]
+    --margin               margin in px between tiles  [4]
+    --interpolation        Interpolation algorithm used when scaling retina images (nearest-neighbor|moving-average|linear|grid|cubic|lanczos)
+    --opacity              background opacity of the sprite. defaults to 0 when png or 100 when jpg  [0]
+    --orientation          orientation of the sprite image (vertical|horizontal|binary-tree)  [vertical]
+    --prefix               prefix for the class name used in css (without .)
+    --no-sort              disable sorting of layout
 ```
 
 ## Programatic usage
