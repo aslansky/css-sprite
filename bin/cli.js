@@ -69,6 +69,11 @@ var opts = require('nomnom')
     default: '#FFFFFF',
     help: 'background color of the sprite in hex'
   })
+  .option('cachebuster', {
+    choices: ['random'],
+    default: false,
+    help: 'appends a "cache buster" to the background image in the form "?<...>" (random)'
+  })
   .option('margin', {
     default: 4,
     help: 'margin in px between tiles'
