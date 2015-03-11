@@ -213,6 +213,30 @@ describe('css-sprite (lib/css-sprite.js)', function () {
         done();
       });
   });
+  it('should return a css file with an absolute background img URL, if applicable', function (done) {
+    var css;
+    vfs.src('./test/fixtures/**')
+      .pipe(sprite({
+        out: './dist/img',
+        name: 'sprites',
+        style: './dist/css/sprites.css',
+        cssPath: 'http://foo.bar'
+      }))
+      .pipe(through2.obj(function (file, enc, cb) {
+        if (file.relative.indexOf('css') > -1) {
+          css = file;
+        }
+        cb();
+      }))
+      .on('data', noop)
+      .on('end', function () {
+        css.should.be.ok;
+        css.path.should.equal('./dist/css/sprites.css');
+        css.relative.should.equal('sprites.css');
+        css.contents.toString('utf-8').should.containEql('background-image: url(\'http://foo.bar/sprites.png\')');
+        done();
+      });
+  });
   it('should return a object stream with a sprite and a scss file', function (done) {
     var png, css;
     vfs.src('./test/fixtures/**')
