@@ -47,6 +47,7 @@ Options:
     -s, --style            file to write css to, if omitted no css is written
     -w, --watch            continuously create sprite
     --background           background color of the sprite in hex  [#FFFFFF]
+    --cachebuster          appends a "cache buster" to the background image in the form "?<...>" (random)  [false]
     --margin               margin in px between tiles  [4]
     --interpolation        Interpolation algorithm used when scaling retina images (nearest-neighbor|moving-average|linear|grid|cubic|lanczos)
     --opacity              background opacity of the sprite. defaults to 0 when png or 100 when jpg  [0]
@@ -72,6 +73,7 @@ sprite.create(options, cb);
 * **template:** output template file, overrides processor option (must be a [mustache](http://mustache.github.io/) template)
 * **retina:** generate both retina and standard sprites. src images have to be in retina resolution
 * **background** background color of the sprite in hex. Defaults to #FFFFFF
+* **cachebuster** appends a "cache buster" to the background image in the form "?<...>" (random)  [false]
 * **style:** file to write css to, if omitted no css is written
 * **margin:** margin in px between tiles.  (Use an even number if generating retina sprites).  [4]
 * **opacity** background opacity of the sprite between 0 and 100. Defaults to 0 when png or 100 when jpg
