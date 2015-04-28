@@ -99,6 +99,11 @@ var opts = require('nomnom')
     flag: true,
     help: 'disable sorting of layout'
   })
+  .option('generate', {
+    abbr: 'g',
+    flag: true,
+    help: 'generate a class for each sprite when using a preprocessor'
+  })
   .script('css-sprite')
   .parse();
 

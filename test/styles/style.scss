@@ -1,5 +1,9 @@
-@import "../dist/sprite.scss";
+@import '../dist/sprite';
 
 .icon-camera {
   @include sprite($camera);
+}
+
+.icon-generated {
+  @extend .icon-cart;
 }

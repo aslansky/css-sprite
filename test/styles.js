@@ -12,17 +12,26 @@ var CleanCSS = require('clean-css');
 
 describe('styles (lib/templates)', function () {
   it('should create identical styles', function (done) {
-    async.eachSeries(['scss', 'less', 'stylus'],
+    async.eachSeries(['sass', 'scss', 'less', 'stylus'],
     function (proc, cb) {
+      var ext = (proc === 'stylus') ? 'styl' : proc;
       sprite.create({
         src: ['./test/fixtures/*.png'],
         out: './test/dist',
         processor: proc,
-        base64: true
+        base64: true,
+        generate: true
       }, cb);
     },
     function () {
       async.series([
+        function (cb) {
+          var result = sass.renderSync({
+            file: path.join(__dirname, 'styles/style.sass'),
+            outputStyle: 'compressed'
+          });
+          cb(null, result.css);
+        },
         function (cb) {
           var result = sass.renderSync({
             file: path.join(__dirname, 'styles/style.scss'),
@@ -32,7 +41,8 @@ describe('styles (lib/templates)', function () {
         },
         function (cb) {
           less.render(fs.readFileSync(path.join(__dirname, 'styles/style.less')).toString(), {
-            paths: [path.join(__dirname, 'dist/')]
+            paths: [path.join(__dirname, 'dist/')],
+            compress: true
           }, function (err, output) {
             cb(err, output.css);
           });
@@ -45,8 +55,10 @@ describe('styles (lib/templates)', function () {
       ], function (err, results) {
         new CleanCSS().minify(results[0]).styles.should.equal(new CleanCSS().minify(results[1]).styles);
         new CleanCSS().minify(results[1]).styles.should.equal(new CleanCSS().minify(results[2]).styles);
-        new CleanCSS().minify(results[2]).styles.should.equal(new CleanCSS().minify(results[0]).styles);
+        new CleanCSS().minify(results[2]).styles.should.equal(new CleanCSS().minify(results[3]).styles);
+        new CleanCSS().minify(results[3]).styles.should.equal(new CleanCSS().minify(results[0]).styles);
         fs.unlinkSync('./test/dist/sprite.less');
+        fs.unlinkSync('./test/dist/sprite.sass');
         fs.unlinkSync('./test/dist/sprite.scss');
         fs.unlinkSync('./test/dist/sprite.styl');
         fs.rmdirSync('./test/dist');

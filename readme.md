@@ -46,6 +46,7 @@ Options:
     -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
     -s, --style            file to write css to, if omitted no css is written
     -w, --watch            continuously create sprite
+    -g, --generate         generate a class for each sprite when using a preprocessor
     --background           background color of the sprite in hex  [#FFFFFF]
     --cachebuster          appends a "cache buster" to the background image in the form "?<...>" (random)  [false]
     --margin               margin in px between tiles  [4]
@@ -81,6 +82,7 @@ sprite.create(options, cb);
 * **prefix:** prefix for the class name used in css (without .) [icon]
 * **sort:** enable/disable sorting of layout [true]
 * **interpolation** Interpolation algorithm used when scaling retina images to standard definition. Possible values are `nearest-neighbor`,`moving-average`,`linear`,`grid`,`cubic`,`lanczos`. Defaults to `grid`.
+* **generate** generate a class for each sprite when using a preprocessor.  [false]
 
 
 ### Example
