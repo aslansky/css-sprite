@@ -46,7 +46,7 @@ Options:
     -r, --retina           generate both retina and standard sprites. src images have to be in retina resolution
     -s, --style            file to write css to, if omitted no css is written
     -w, --watch            continuously create sprite
-    -g, --generate         generate a class for each sprite when using a preprocessor
+    -g, --generate         generate a class for each sprite when using a preprocessor  [false]
     --background           background color of the sprite in hex  [#FFFFFF]
     --cachebuster          appends a "cache buster" to the background image in the form "?<...>" (random)  [false]
     --margin               margin in px between tiles  [4]
