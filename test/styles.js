@@ -14,7 +14,6 @@ describe('styles (lib/templates)', function () {
   it('should create identical styles', function (done) {
     async.eachSeries(['sass', 'scss', 'less', 'stylus'],
     function (proc, cb) {
-      var ext = (proc === 'stylus') ? 'styl' : proc;
       sprite.create({
         src: ['./test/fixtures/*.png'],
         out: './test/dist',
