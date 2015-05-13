@@ -13,14 +13,11 @@
 .sprite-position(@sprite) {
   @sprite-offset-x: extract(@sprite, 1);
   @sprite-offset-y: extract(@sprite, 2);
-  background-position: @sprite-offset-x  @sprite-offset-y;
+  background-position: @sprite-offset-x @sprite-offset-y;
 }
 
 .sprite(@sprite) {
   .sprite-position(@sprite);
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: block;
   .sprite-width(@sprite);
   .sprite-height(@sprite);
 }
@@ -28,12 +25,28 @@
 {{#sprite}}
 {{class}} {
   background-image: url('{{{escaped_image}}}');
-  {{#retina}}
-  @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
-    background-image: url('{{{escaped_image}}}');
-    background-size: {{px.total_width}} {{px.total_height}};
-  }
-  {{/retina}}
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+}
+{{/sprite}}
+
+{{#options}}
+  {{#generate}}
+    {{#items}}
+{{class}} {
+      {{#sprite}}
+  &:extend({{class}});
+      {{/sprite}}
+  .sprite(@{{name}});
 }
 
-{{/sprite}}
+    {{/items}}
+  {{/generate}}
+{{/options}}
+{{#retina}}
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  background-image: url('{{{escaped_image}}}');
+  background-size: {{px.total_width}} {{px.total_height}};
+}
+{{/retina}}
