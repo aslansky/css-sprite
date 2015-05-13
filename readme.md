@@ -10,6 +10,10 @@
 
 > Can inline base64 encoded sprites.
 
+# css-sprite is now called [sprity](https://www.npmjs.com/package/sprity)
+
+Version 1.0.0 had so many changes, that I decided to also change the name to something a little bit more catchy. So `css-sprite` is called [sprity](https://www.npmjs.com/package/sprity) from now on. css-sprite will be deprecated and no development will be done here anymore.
+
 ## Requirements
 
 Starting with version 0.9 `css-sprite` has no external dependencies
