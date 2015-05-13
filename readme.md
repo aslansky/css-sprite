@@ -252,6 +252,7 @@ To use your own [mustache](http://mustache.github.io/) template for style file c
   * **offset_x** -- x offset within the sprite
   * **offset_y** -- y offset within the sprite
   * **class** -- class name of the tile
+  * **classname** -- class name of the tile, without '.' prefixed
   * **px** -- object with pixel values instead of raw data (e.g width: '250px')
       * **x**, **y**, **offset_x**, **offset_y**, **height**, **width**, **total_height**, **total_width**
 * **sprite** -- object with information about the sprite itself
@@ -259,11 +260,13 @@ To use your own [mustache](http://mustache.github.io/) template for style file c
   * **image** -- css path to sprite or base64 encode string
   * **escaped_image** -- escaped css path to sprite or base64 encode string
   * **class** -- class name of the sprite
+  * **classname** -- class name of the sprite, without '.' prefixed
 * **retina** -- object with information about the retina sprite
   * **name** -- name of the retina sprite
   * **image** -- css path to retina sprite
   * **escaped_image** -- escaped css path to retina sprite
   * **class** -- class name of the retina sprite
+  * **classname** -- class name of the retina sprite, without '.' prefixed
   * **total_width** -- height of the retina sprite (for background-size)
   * **total_height** -- width of the retina sprite (for background-size)
   * **px** -- object with pixel values
