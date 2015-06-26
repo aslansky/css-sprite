@@ -1,0 +1,20 @@
+{{=<% %>=}}{"frames": {
+ <% #items %>
+"<% name %>":
+{
+  "frame": {"x":<% x %>,"y":<% y %>,"w":<% width %>,"h":<% height %>},
+  "rotated": false,
+  "trimmed": false,
+  "spriteSourceSize": {"x":0,"y":0,"w":<% width %>,"h":<% height %>},
+  "sourceSize": {"w":<% width %>,"h":<% height %>}
+},
+<% /items %>
+"meta": {
+  "app": "css-sprite",
+  "version": "1.0",
+  "image": "<% sprite.name %>",
+  "format": "RGBA8888",
+  "size": {"w":<% sprite.total_width %>,"h":<% sprite.total_height %>},
+  "scale": "1"
+}
+}<%={{ }}=%>
