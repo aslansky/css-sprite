@@ -53,7 +53,7 @@
     "lodash": "^3.3.1",
     "lwip": "0.0.6",
     "mkdirp": "^0.5.0",
-    "mustache": "^1.1.0",
+    "mustache": "^3.1.0",
     "nomnom": "^1.8.1",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",
